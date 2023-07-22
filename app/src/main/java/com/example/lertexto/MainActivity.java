@@ -111,6 +111,10 @@ public class MainActivity extends Activity {
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
+                textVersiculo.setText("");
+                textLivro.setText("");
+                micButton.setVisibility(View.VISIBLE);
+                micButton.setBackgroundColor(Color.RED);
 
             }
 
@@ -330,18 +334,15 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // Toast.makeText(getApplicationContext(), String.valueOf(keyCode), Toast.LENGTH_SHORT).show();
+         Toast.makeText(getApplicationContext(), String.valueOf(keyCode), Toast.LENGTH_SHORT).show();
         if (keyCode == 66 || keyCode == 30) {//30
-            textVersiculo.setText("");
-            textLivro.setText("");
-            micButton.setVisibility(View.VISIBLE);
-            micButton.setBackgroundColor(Color.RED);
             speechRecognizer.startListening(speechRecognizerIntent);
+
             //Toast.makeText(this, "Fale o livro, capitulo, versiculo", Toast.LENGTH_SHORT).show();
         } else if (keyCode == 24 || keyCode == 92) {//92
-            proximo();
-        } else if (keyCode == 25 || keyCode == 93) {//93
             anterior();
+        } else if (keyCode == 25 || keyCode == 93) {//93
+           proximo();
         }
         return true;
     }
